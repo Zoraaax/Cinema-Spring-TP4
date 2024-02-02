@@ -66,4 +66,10 @@ public class SeanceService {
     public Seance update(Seance seance) {
         return seanceRepository.save(seance);
     }
+
+    public Seance updatePlacesDisponibles(Long id, Integer placesDispo) {
+        Seance seance = findById(id);
+        seance.setPlacesDisponibles(placesDispo);
+        return seanceRepository.save(seance);
+    }
 }
