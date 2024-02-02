@@ -2,12 +2,11 @@ package fr.valentin.springtp4.salle;
 
 import fr.valentin.springtp4.exception.BadRequestException;
 import fr.valentin.springtp4.salle.exception.SalleNotFoundException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SalleService {
