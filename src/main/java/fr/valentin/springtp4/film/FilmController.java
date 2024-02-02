@@ -6,6 +6,7 @@ import fr.valentin.springtp4.film.dto.FilmCompletDto;
 import fr.valentin.springtp4.film.dto.FilmReduitDto;
 import fr.valentin.springtp4.realisateur.Realisateur;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class FilmController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Film save(@RequestBody Film film) {
         return filmService.save(film);
 

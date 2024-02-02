@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -37,16 +38,23 @@ public class FilmService {
      */
     public Film save(Film film) {
 
+        List<String> erreurs = new ArrayList<>();
+
         if (film.getTitre() == null) {
-            throw new BadRequestException("Le titre du film est obligatoire");
+            erreurs.add("Le titre du film est obligatoire");
         }
 
         if (film.getDateSortie() == null) {
-            throw new BadRequestException("La date de sortie du film est obligatoire");
+            erreurs.add("La date de sortie du film est obligatoire");
         }
 
         if (film.getRealisateur() == null) {
-            throw new BadRequestException("Le realisateur du film est obligatoire");
+            erreurs.add("Le realisateur du film est obligatoire");
+        }
+
+
+        if (!erreurs.isEmpty()) {
+            throw new BadRequestException(erreurs);
         }
 
         return filmRepository.save(film);
