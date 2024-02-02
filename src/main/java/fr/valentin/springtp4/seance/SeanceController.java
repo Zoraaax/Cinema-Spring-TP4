@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.valentin.springtp4.seance.dto.SeanceReduitDto;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -42,5 +43,12 @@ public class SeanceController {
     @PutMapping
     public Seance update(@RequestBody Seance seance) {
         return seanceService.update(seance);
+    }
+
+    @GetMapping("/disponible")
+    public List<SeanceReduitDto> findSeanceByDate(@RequestParam LocalDate date) {
+        return seanceService.findSeanceByDate(date).stream().map(
+                seance -> objectMapper.convertValue(seance, SeanceReduitDto.class)
+        ).toList();
     }
 }

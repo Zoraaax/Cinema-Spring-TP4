@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SeanceService {
@@ -71,5 +72,9 @@ public class SeanceService {
         Seance seance = findById(id);
         seance.setPlacesDisponibles(placesDispo);
         return seanceRepository.save(seance);
+    }
+
+    public Optional<Seance> findSeanceByDate(LocalDate date) {
+        return seanceRepository.findSeanceByDate(date);
     }
 }

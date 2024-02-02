@@ -2,5 +2,9 @@ package fr.valentin.springtp4.seance;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SeanceRepository extends JpaRepository<Seance, Long>{
+import java.time.LocalDate;
+import java.util.Optional;
+
+public interface SeanceRepository extends JpaRepository<Seance, Long> {
+    Optional<Seance> findSeanceByDate(LocalDate date);
 }
